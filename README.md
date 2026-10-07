@@ -1,42 +1,37 @@
 # Kisan Machinery Mart
 
-A static React + Vite + Tailwind website for Kisan Machinery Mart, Bijnor. It has no backend or database and can be hosted on GitHub Pages or any static host such as Hostinger.
+A lightweight, responsive dealership website built with plain HTML5, CSS3, and vanilla JavaScript. It has no frontend framework, build step, backend, or database and can be opened directly from `index.html`.
 
 ## Run locally
 
-```sh
-npm install
-npm run dev
-```
-
-Create and preview a production build:
+Open `index.html` in a browser. To preview it through a local web server instead, run Python from the project directory:
 
 ```sh
-npm run build
-npm run preview
+python3 -m http.server 8000
 ```
 
-The generated static website is in `dist/`. Upload the contents of that folder to Hostinger's `public_html` directory to deploy there.
+Then visit <http://localhost:8000>.
 
-## GitHub Pages
+## GitHub Pages deployment
 
-The included `.github/workflows/deploy.yml` builds and deploys the site when changes are pushed to `main`. In the repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The Vite base path is configured for this repository name in `vite.config.js`; update it if the repository is renamed. For a custom domain or a user/organization site, use `/` as the Vite `base` instead.
+The included GitHub Actions workflow publishes the static website when changes are pushed to `main`.
 
-## Business details and content
+1. Push the repository to GitHub.
+2. In the repository, open **Settings → Pages**.
+3. Set **Build and deployment → Source** to **GitHub Actions**.
+4. Push to `main` or manually run **Deploy to GitHub Pages** from the **Actions** tab.
 
-Edit `src/data/business.js` to change:
+For this repository, the site URL is `https://udittriad.github.io/kisan-machinery-mart/`.
 
-- Phone numbers, WhatsApp number/message, and contact person
-- Bijnor and Najibabad addresses and map URLs
-- Dealership opening-soon badge, brands, and social links
-- Hero, field, tractor, delivery, showroom, and gallery image paths
+## Hostinger deployment
 
-Edit `src/data/tractors.js` to add inventory models and their confirmed HP values. Leave `horsepower` as `null` until the specification is verified. The current model cards intentionally use general brand/model placeholders rather than claiming exact models or specifications.
+Upload `index.html`, `style.css`, `script.js`, and the complete `images` folder to the site's `public_html` directory. Keep the files and folder structure together, then open the domain in a browser.
 
-Add verified customer names and approved review text in `src/components/Testimonials.jsx` before publishing testimonials. Supplied local assets `messy1.jpeg`, `messy2.jpeg`, `messy3.jpeg`, and `messy5.jpeg` are used for the hero and tractor cards. Gallery locations without real dealership photography still use public Unsplash agriculture photos: replace the corresponding `images` entries in `src/data/business.js` with dealership-owned showroom, delivery, agriculture, and customer photos. The supplied `photo.jpeg` promotional poster is used in the offers section; replace it with an updated poster by changing its import at the top of `src/data/business.js`.
+## Website files
 
-Social icons appear when their URLs are set in `business.socialLinks`. Location cards use Google Maps search directions by default; set a precise `mapUrl` for each location to use a verified pin.
+- `index.html` — page content and SEO metadata
+- `style.css` — layout, colors, animation, and responsive styles
+- `script.js` — mobile navigation and current-year footer
+- `images/` — local dealership and tractor images
 
-## Image note
-
-Initial agriculture/gallery images are served from Unsplash and should be replaced with owned showroom, delivery, field, and customer photos for the finished dealership site.
+Update contact information and page content in `index.html`. Replace images in `images/` while keeping their filenames, or update the matching relative paths in the HTML.
