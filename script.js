@@ -40,23 +40,6 @@ const observedSections = navLinks
   .filter((section) => section)
 
 if ('IntersectionObserver' in window) {
-  const revealTargets = document.querySelectorAll(
-    '.trust-item, .section-heading, .tractor-card, .benefit-card, .field-notes-card, .gallery-item, .contact-panel'
-  )
-
-  const revealObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return
-      entry.target.classList.add('is-visible')
-      observer.unobserve(entry.target)
-    })
-  }, { threshold: 0.12 })
-
-  revealTargets.forEach((target) => {
-    target.classList.add('reveal-on-scroll')
-    revealObserver.observe(target)
-  })
-
   const activeSectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return
