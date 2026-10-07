@@ -41,7 +41,7 @@ const observedSections = navLinks
 
 if ('IntersectionObserver' in window) {
   const revealTargets = document.querySelectorAll(
-    '.intro-layout, .section-heading, .tractor-card, .benefit-card, .field-notes-card, .gallery-item, .contact-panel'
+    '.trust-item, .section-heading, .tractor-card, .benefit-card, .field-notes-card, .gallery-item, .contact-panel'
   )
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
