@@ -29,6 +29,20 @@ button { color: inherit; }
 .wrap { width: min(1200px, calc(100% - 64px)); margin-inline: auto; }
 .section { padding: 88px 0; }
 
+.dealer-banner { position: relative; isolation: isolate; display: flex; min-height: 174px; align-items: center; justify-content: center; overflow: hidden; padding: 24px 90px 25px; border-bottom: 3px solid var(--gold); border-radius: 0 0 16px 16px; background: radial-gradient(ellipse at 50% 0, rgba(51, 137, 81, .48), transparent 60%), linear-gradient(105deg, #0b3120, var(--green) 54%, #174b31); color: var(--cream-light); text-align: center; box-shadow: 0 9px 24px rgba(7, 30, 17, .3); animation: banner-enter .75s cubic-bezier(.2, .75, .25, 1) both; }
+.dealer-banner::before, .dealer-banner::after { position: absolute; top: 0; bottom: 0; width: 5px; background: var(--red); content: ''; }
+.dealer-banner::before { left: 0; }
+.dealer-banner::after { right: 0; }
+.dealer-banner-shine { position: absolute; z-index: -1; inset: 0; transform: translateX(-120%); background: linear-gradient(105deg, transparent 34%, rgba(255, 242, 200, .03) 43%, rgba(255, 242, 200, .18) 50%, rgba(255, 242, 200, .03) 57%, transparent 66%); animation: banner-shine 7s 1s ease-in-out infinite; pointer-events: none; }
+.dealer-banner-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.dealer-banner-name { color: #fff9e8; font: 700 clamp(29px, 4vw, 46px)/1.25 'Hind', sans-serif; letter-spacing: .01em; white-space: nowrap; text-shadow: 0 3px 14px rgba(0, 0, 0, .28); animation: banner-copy-enter .75s .18s both; }
+.dealer-banner-availability { margin-top: 4px; color: #f4d995; font: 600 clamp(17px, 2.3vw, 26px)/1.45 'Hind', sans-serif; text-wrap: balance; animation: banner-copy-enter .75s .32s both; }
+.dealer-banner-support { margin-top: 7px; color: #fff6da; font: 500 13px/1.4 'Hind', sans-serif; letter-spacing: .1em; animation: banner-copy-enter .75s .44s both; }
+.dealer-banner-support i { padding: 0 5px; color: var(--red); font-style: normal; }
+.dealer-banner-crop, .dealer-banner-tractor { position: absolute; z-index: 1; color: rgba(232, 204, 133, .8); pointer-events: none; }
+.dealer-banner-crop { left: max(26px, calc((100vw - 1160px) / 2)); font-size: clamp(44px, 6vw, 72px); transform: rotate(-24deg); }
+.dealer-banner-tractor { right: max(27px, calc((100vw - 1160px) / 2)); bottom: 20px; display: grid; width: 67px; height: 67px; place-items: center; border: 1px solid rgba(214, 168, 79, .55); border-radius: 50%; background: rgba(198, 40, 40, .92); color: #fff4d5; font-size: 30px; box-shadow: 0 6px 18px rgba(6, 28, 16, .28); }
+
 .site-header { position: sticky; inset: 0 0 auto; z-index: 20; border-bottom: 1px solid rgba(255, 255, 255, .12); background: rgba(18, 63, 42, .97); backdrop-filter: blur(14px); }
 .navbar { position: relative; height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 10px; }
@@ -75,7 +89,6 @@ button { color: inherit; }
 .hero-heading-tail { color: #fff9e9; }
 .hero-lead { max-width: 520px; margin: 0; color: rgba(255, 253, 247, .86); font: 500 16px/1.75 'Hind', sans-serif; animation: hero-enter .62s .5s both; }
 .hero-lead i { color: var(--gold); font-style: normal; }
-.hero-dealer-name { display: inline-block; margin: 14px 0 0; padding: 5px 0 5px 12px; border-left: 3px solid var(--red); color: #f4dcaa; font: 600 16px 'Hind', sans-serif; animation: hero-enter .62s .62s both; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 21px; animation: hero-enter .65s .75s both; }
 .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; border: 1px solid transparent; border-radius: 28px; font-size: 12px; font-weight: 700; transition: transform .2s, box-shadow .2s, background .2s; }
 .button:hover { transform: translateY(-3px); box-shadow: 0 9px 22px rgba(7, 26, 17, .2); }
@@ -235,6 +248,9 @@ button { color: inherit; }
 .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 .tractor-card:nth-child(2), .benefit-card:nth-child(2), .gallery-item:nth-child(2) { transition-delay: .08s; }
 .tractor-card:nth-child(3), .benefit-card:nth-child(3), .gallery-item:nth-child(3) { transition-delay: .16s; }
+@keyframes banner-enter { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes banner-copy-enter { from { opacity: 0; transform: translateY(9px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes banner-shine { 0%, 20% { transform: translateX(-120%); } 65%, 100% { transform: translateX(120%); } }
 @keyframes hero-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes image-settle { from { transform: scale(1.03); filter: saturate(.84); } to { transform: scale(1); filter: saturate(1); } }
 @keyframes red-underline { to { background-size: 100% 5px; } }
@@ -267,6 +283,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   html { scroll-padding-top: 72px; }
   .wrap { width: calc(100% - 40px); }
   .section { padding: 64px 0; }
+  .dealer-banner { min-height: 156px; padding: 20px 55px 21px; border-radius: 0 0 12px 12px; }
+  .dealer-banner-name { font-size: clamp(23px, 6vw, 34px); letter-spacing: 0; }
+  .dealer-banner-availability { max-width: 600px; margin-top: 4px; font-size: clamp(16px, 4.15vw, 22px); line-height: 1.4; }
+  .dealer-banner-support { margin-top: 6px; font-size: 11px; letter-spacing: .06em; }
+  .dealer-banner-crop { left: 12px; font-size: 38px; }
+  .dealer-banner-tractor { right: 11px; bottom: 13px; width: 43px; height: 43px; font-size: 20px; }
   .navbar { height: 68px; gap: 9px; }
   .brand { gap: 8px; }
   .brand-mark { width: 37px; height: 37px; font-size: 11px; }
@@ -292,7 +314,6 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .hero h1 { margin: 14px 0 10px; font-size: clamp(37px, 9.7vw, 57px); line-height: 1.17; }
   .hero-title-bottom { font-size: .76em; }
   .hero-lead { max-width: 540px; font-size: 14px; line-height: 1.65; }
-  .hero-dealer-name { margin-top: 10px; font-size: 14px; }
   .hero-actions { gap: 7px; margin-top: 16px; }
   .button { min-height: 45px; padding: 0 14px; gap: 7px; font-size: 11px; }
   .hero-whatsapp-link { margin-top: 14px; font-size: 11px; }
@@ -364,6 +385,12 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 
 @media (max-width: 420px) {
   .wrap { width: calc(100% - 32px); }
+  .dealer-banner { min-height: 148px; padding: 19px 29px 20px; }
+  .dealer-banner-name { font-size: clamp(19px, 6.1vw, 25px); }
+  .dealer-banner-availability { max-width: 300px; font-size: clamp(14px, 4.65vw, 18px); }
+  .dealer-banner-support { font-size: 10px; }
+  .dealer-banner-crop { left: 4px; font-size: 27px; }
+  .dealer-banner-tractor { right: 4px; bottom: 8px; width: 32px; height: 32px; font-size: 15px; }
   .brand strong { font-size: 10px; }
   .brand small { font-size: 8px; }
   .brand-mark { width: 34px; height: 34px; }
